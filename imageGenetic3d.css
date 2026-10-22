@@ -1,0 +1,22 @@
+/* Genetic image relief. Small candidate populations evolve each block's color and brightness-based depth; instanced cubes display the result.
+ * Page-specific layout and controls; shared theme colors are supplied by /Theme.css.
+ */
+main { max-width: 1600px; }
+.section-label { color: var(--site-accent); font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; }
+.image-layout { display: grid; grid-template-columns: 320px minmax(0,1fr); gap: 1.5rem; align-items: start; }
+.image-controls,.image-panel { padding: 1.25rem; border: 1px solid var(--site-border); border-radius: 12px; background: var(--site-surface); }
+.image-controls label { display: block; margin: .75rem 0 .35rem; }
+.image-controls input[type="range"] { display: block; width: 100%; }
+.image-controls output { float: right; color: var(--site-accent); }
+.image-controls h2 { font-size: 1rem; }
+#load-oleg { margin-top: .5rem; }
+#image-status { margin-top: .75rem; color: var(--site-muted); }
+#source-preview { width: 100%; height: 150px; object-fit: contain; background: var(--site-bg); border-radius: 6px; }
+.image-actions { display: flex; flex-wrap: wrap; gap: .5rem; margin: .75rem 0; }
+.image-controls dl { display: grid; grid-template-columns: 1fr 1fr; }
+.image-controls dd { text-align: right; color: var(--site-accent); }
+#image-view { height: 70vh; min-height: 360px; position: relative; }
+#image-view canvas { display: block; width: 100%; height: 100%; touch-action: none; border-radius: 6px; }
+#scene-error { padding: 1rem; }
+/* Stack or resize the project layout on narrower screens. */
+@media(max-width:750px) { .image-layout { grid-template-columns: 1fr; } }

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<!-- Genetic image relief. Small candidate populations evolve each block's color and brightness-based depth; instanced cubes display the result. -->
+<html lang="en">
+<head>
+    <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Evolve a 3D block portrait from your own image or Oleg's photos using a genetic algorithm.">
+    <title>3D Image Genetic Algorithm — Louis du Beux</title>
+    <link rel="stylesheet" href="/Lib/Bootstrap4.0/css/bootstrap.min.css"><link rel="stylesheet" href="/NavBar.css"><link rel="stylesheet" href="./imageGenetic3d.css"><link rel="stylesheet" href="/Theme.css?v=2">
+    <script type="importmap">{"imports":{"three":"/Lib/Three/Three.js"}}</script><script src="/NavBar.js" defer></script>
+    <link rel="canonical" href="https://louisdubeux.com/Projects/imageGenetic3d/imageGenetic3d.html">
+</head>
+<body>
+    <!-- Shared navigation is populated by /NavBar.js. -->
+    <div id="nav-placeholder"></div>
+    <main class="container-fluid py-4">
+        <header><p class="section-label">Evolution · Image to sculpture</p><h1>3D Image Genetic Algorithm</h1><p class="text-muted">Evolve colored blocks into a 3D portrait. Each block breeds better colors and depth through selection, crossover, and mutation.</p></header>
+        <div class="image-layout">
+            <aside class="image-controls">
+                <label for="upload-image">Import a picture</label><input id="upload-image" type="file" accept="image/*" class="form-control-file">
+                <label for="oleg-photo">Or choose an Oleg picture</label><select id="oleg-photo" class="form-control" disabled><option>Loading photos…</option></select><button id="load-oleg" class="btn btn-outline-light" type="button" disabled>Use Oleg photo</button>
+                <p id="image-status" role="status" aria-live="polite">Choose a picture or experiment with the sample.</p>
+                <h2>Source image</h2><canvas id="source-preview" width="240" height="180" role="img" aria-label="Source image preview"></canvas>
+                <label for="resolution">Block resolution <output id="resolution-value">32</output></label><input id="resolution" type="range" min="16" max="1080" step="8" value="32">
+                <label for="mutation">Mutation rate <output id="mutation-value">30%</output></label><input id="mutation" type="range" min="1" max="90" value="30">
+                <label for="depth">Relief depth <output id="depth-value">12</output></label><input id="depth" type="range" min="1" max="30" value="12">
+                <div class="image-actions"><button id="play" class="btn btn-primary" type="button">Start evolution</button><button id="step" class="btn btn-outline-light" type="button">Step</button><button id="restart" class="btn btn-outline-light" type="button">Restart</button></div>
+                <dl><dt>Generation</dt><dd id="generation">0</dd><dt>Match score</dt><dd id="fitness">—</dd></dl>
+                <p class="text-muted small">A population of eight candidates evolves per block. Depth is an artistic relief based on brightness, rather than reconstructed object geometry. Uploads stay in your browser. Resolution changes restart evolution. Large images build and evolve in batches; 1080 uses up to 1,166,400 blocks.</p>
+            </aside>
+            <section class="image-panel"><div class="image-actions"><button id="front-view" class="btn btn-outline-light" type="button">Front view</button><button id="orbit-view" class="btn btn-outline-light" type="button">3D view</button></div><p class="text-muted small">Drag to orbit · Scroll to zoom · Right-drag to pan · Touch: pinch to zoom and two-finger pan.</p><div id="image-view" aria-label="Interactive evolving 3D image"><p id="scene-error" role="alert" hidden></p></div></section>
+        </div>
+    </main>
+    <!-- Load the project entry module after its controls and view containers exist. -->
+    <script type="module" src="./imageGenetic3d.js?v=1080-1"></script>
+</body>
+</html>
